@@ -131,14 +131,20 @@ const emptyCart = () => {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
-const pay = (amount) => {
-  const total = cartTotal();
-  if (amount < total) {
-    return -(total - amount);
+
+let totalPaid = 0;
+
+function pay(amount) {
+  const totalPaid = cartTotal();
+  if (amount < cartTotal()) {
+    return -(totalPaid - amount);
   } else {
-    return amount - total;
+    return amount - totalPaid;
   }
-};
+}
+
+
+
 
 module.exports = {
   products,
@@ -150,4 +156,5 @@ module.exports = {
   cartTotal,
   pay,
   emptyCart,
+  totalPaid,
 };
